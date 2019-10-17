@@ -9,9 +9,18 @@ signupForm.addEventListener('submit', evt => {
 
   // Sign up user (Note: Firebase method is async and returns a promise)
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred.user);
     const modal = document.querySelector('#modal-signup');
     M.Modal.getInstance(modal).close();
     signupForm.reset();
+  });
+});
+
+// Logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', evt => {
+  evt.preventDefault();
+
+  auth.signOut().then(() => {
+    console.log('User signed out');
   });
 });
